@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'BarangController@index');
+Route::get('/', function(){
+  return view('dashboard');
+});
 
 Route::get('/barang', 'BarangController@index');
 Route::get('/barang/create', 'BarangController@create');
@@ -42,3 +44,9 @@ Route::post('/pembelian', 'PembelianController@store');
 Route::get('/pembelian/clear', 'PembelianController@clear');
 Route::get('/pembelian/fetch/{id}','PembelianController@fetch')->name('supplier');
 Route::get('/pembelian/barang/{id}','PembelianController@barang')->name('barang');
+
+Route::get('/detail_pembelian', 'DetailPembelianController@index');
+Route::get('/detail_pembelian/print/{id}', 'DetailPembelianController@pdf');
+
+Route::get('/kartu_stok', 'KartuStokController@index');
+Route::get('/kartu_stok/fetch/{id}', 'KartuStokController@fetch');

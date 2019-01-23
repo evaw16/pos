@@ -23,31 +23,34 @@
   </div>
   <!--close-Header-part-->
 
-
-  <!--top-Header-menu-->
-  {{-- <div id="user-nav" class="navbar navbar-inverse" style="margin-left:1000px">
-    <ul class="nav">
-      <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome User</span><b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
-          <li class="divider"></li>
-          <li><a href="#"><i class="icon-check"></i> My Tasks</a></li>
-          <li class="divider"></li>
-          <li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
-        </ul>
-      </li>
-    </ul>
-  </div> --}}
-  <!--close-top-Header-menu-->
-
   <!--sidebar-menu-->
   <div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> Barang</a>
     <ul>
       {{-- <li><a href="/barang" class="nav-link {{ request()->is('barang*') ? 'active' : '' }}">Barang</a></li> --}}
-      <li><a href="/barang"><i class="icon-folder-open"></i> <span style="font-family: sans-serif;font-size:15px">Barang</span></a> </li>
-      <li> <a href="/customer"><i class="fas fa-users"></i> <span style="font-family: sans-serif;font-size:15px">Customer</span></a> </li>
-      <li><a href="/supplier"><i class="fas fa-truck-moving"></i> <span style="font-family: sans-serif;font-size:15px">Supplier</span></a></li>
-      <li><a href="/pembelian"><i class="icon-signin"></i> <span style="font-family: sans-serif;font-size:15px">Pengadaan</span></a></li>
+      <li><a href="/barang"><i class="icon-briefcase"></i> <span style="font-family: sans-serif;font-size:15px">Barang</span></a> </li>
+      <li><a href="/kartu_stok"><i class="icon-file"></i> <span style="font-family: sans-serif;font-size:15px">Kartu Stok</span></a> </li>
+      <li class="submenu"> <a href="#"><i class="icon-user"></i> <span style="font-family: sans-serif;font-size:15px">User</span>
+        <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i></span></a>
+        <ul>
+          <li> <a href="/customer"><i class="fas fa-users"></i> <span style="font-family: sans-serif;font-size:15px">Customer</span></a> </li>
+          <li><a href="/supplier"><i class="icon-tasks"></i> <span style="font-family: sans-serif;font-size:15px">Supplier</span></a></li>
+        </ul>
+      </li>
+      <li class="submenu"> <a href="#"><i class="icon-truck"></i> <span style="font-family: sans-serif;font-size:15px">Pengadaan</span>
+      <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i></span></a>
+        <ul>
+          <li> <a href="/pembelian"><i class="icon-th-large"></i> <span style="font-family: sans-serif;font-size:15px">Pembelian</span></a> </li>
+          <li><a href="/detail_pembelian"><i class="icon-th"></i> <span style="font-family: sans-serif;font-size:15px">Detail Pembelian</span></a></li>
+        </ul>
+      </li>
+      <li class="submenu"> <a href="#"><i class="icon-share"></i> <span style="font-family: sans-serif;font-size:15px">Penjualan</span>
+        <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i></span></a>
+        <ul>
+          <li> <a href="/pembelian"><i class="icon-external-link"></i> <span style="font-family: sans-serif;font-size:15px">Penjualan</span></a> </li>
+          <li><a href="/"><i class="icon-qrcode"></i> <span style="font-family: sans-serif;font-size:15px">Detail Penjualan</span></a></li>
+        </ul>
+      </li>
+
     </ul>
   </div>
   <!--sidebar-menu-->
@@ -56,7 +59,7 @@
   <div id="content">
     <!--breadcrumbs-->
     <div id="content-header">
-      <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
+      <div id="breadcrumb"> <a href="/" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
     </div>
     <!--End-breadcrumbs-->
 
@@ -64,14 +67,15 @@
     <div class="container-fluid">
       @yield('content')
     </div>
-  </div>
 
-  <!--end-main-container-part-->
+    <!--end-main-container-part-->
 
-  <!--Footer-part-->
 
-  <div class="row-fluid">
-    <div id="footer" class="span12"> 2019 &copy;</div>
+    <!--Footer-part-->
+
+    <div class="row-fluid">
+      <div id="footer" class="span12"> 2019 &copy;</div>
+    </div>
   </div>
 
   <!--end-Footer-part-->
