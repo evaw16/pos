@@ -14,11 +14,14 @@ Route::get('/', function(){
   return view('dashboard');
 });
 
+
 Route::get('/barang', 'BarangController@index');
+Route::get('/barang/print', 'BarangController@pdf');
 Route::get('/barang/create', 'BarangController@create');
 Route::post('/barang', 'BarangController@store');
-Route::get('/barang/edit/{id}', 'BarangController@edit');
-// Route::get('/barang/sho', 'BarangController@show');
+Route::get('/barang/edit/{id_barang}', 'BarangController@edit');
+Route::put('/barang/{id}/edit', 'BarangController@update');
+Route::delete('/barang/{id}', 'BarangController@destroy');
 
 
 Route::get('/supplier', 'SupplierController@index');
@@ -50,3 +53,13 @@ Route::get('/detail_pembelian/print/{id}', 'DetailPembelianController@pdf');
 
 Route::get('/kartu_stok', 'KartuStokController@index');
 Route::get('/kartu_stok/fetch/{id}', 'KartuStokController@fetch');
+
+Route::get('/penjualan', 'PenjualanController@index');
+Route::get('/penjualan/create', 'PenjualanController@create');
+Route::post('/penjualan', 'PenjualanController@store');
+Route::post('/penjualan/barang/', 'PenjualanController@tambahBarang');
+Route::get('/penjualan/fetch/{id}', 'PenjualanController@fetch');
+Route::get('/penjualan/barang/{id}', 'PenjualanController@barang');
+Route::get('/penjualan/detail/{id}', 'PenjualanController@detail_barang');
+
+Route::get('/detail_penjualan', 'DetailPenjualanController@index');

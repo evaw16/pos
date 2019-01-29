@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 
+
 </head>
 <body>
 
@@ -37,7 +38,7 @@
         </ul>
       </li>
       <li class="submenu"> <a href="#"><i class="icon-truck"></i> <span style="font-family: sans-serif;font-size:15px">Pengadaan</span>
-      <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i></span></a>
+        <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i></span></a>
         <ul>
           <li> <a href="/pembelian"><i class="icon-th-large"></i> <span style="font-family: sans-serif;font-size:15px">Pembelian</span></a> </li>
           <li><a href="/detail_pembelian"><i class="icon-th"></i> <span style="font-family: sans-serif;font-size:15px">Detail Pembelian</span></a></li>
@@ -46,8 +47,8 @@
       <li class="submenu"> <a href="#"><i class="icon-share"></i> <span style="font-family: sans-serif;font-size:15px">Penjualan</span>
         <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i></span></a>
         <ul>
-          <li> <a href="/pembelian"><i class="icon-external-link"></i> <span style="font-family: sans-serif;font-size:15px">Penjualan</span></a> </li>
-          <li><a href="/"><i class="icon-qrcode"></i> <span style="font-family: sans-serif;font-size:15px">Detail Penjualan</span></a></li>
+          <li> <a href="/penjualan"><i class="icon-external-link"></i> <span style="font-family: sans-serif;font-size:15px">Penjualan</span></a> </li>
+          <li><a href="/detail_penjualan"><i class="icon-qrcode"></i> <span style="font-family: sans-serif;font-size:15px">Detail Penjualan</span></a></li>
         </ul>
       </li>
 
@@ -78,6 +79,41 @@
     </div>
   </div>
 
+  <script>
+  document.addEventListener("keydown", e => {
+    if (e.key == "F11") {
+      e.preventDefault()
+    }
+    ;
+  });
+  window.addEventListener("keyup", checkKey, false);
+  function checkKey(key) {
+    if (key.keyCode == "118") {
+      window.location.href = "/barang";
+    }
+    if (key.keyCode == "115") {
+      window.location.href = "/supplier";
+    }
+    if (key.keyCode == "117") {
+      window.location.href = "/customer";
+    }
+    if (key.keyCode == "119") {
+      window.location.href = "/kartu_stok";
+    }
+    if (key.keyCode == "113") {
+      window.location.href = "/pembelian";
+    }
+    if (key.keyCode == "120") {
+      window.location.href = "/detail_pembelian";
+    }
+    if (key.keyCode == "121") {
+      window.location.href = "/penjualan";
+    }
+    if (key.keyCode == "122") {
+      window.location.href = "/detail_penjualan";
+    }
+  }
+  </script>
   <!--end-Footer-part-->
 
   <script src="js/excanvas.min.js"></script>

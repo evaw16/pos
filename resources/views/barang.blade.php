@@ -3,7 +3,7 @@
   <div class="row-fluid">
     <div class="span12">
       <div class="widget-box">
-        <div class="widget-title"> <span class="icon"> <i class="icon-folder-open"></i> </span>
+        <div class="widget-title"> <span class="icon"> <i class="icon-briefcase"></i> </span>
           <h3>Barang</h3>
         </div>
         <div class="widget-content nopadding">

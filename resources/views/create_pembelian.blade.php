@@ -7,7 +7,7 @@
           <h5>Pembelian</h5>
         </div>
         <div class="widget-content nopadding">
-          <form action="/pembelian" method="post" class="form-horizontal">
+          <form action="/pembelian/barang" method="post" class="form-horizontal">
             <div class="control-group">
               <label class="control-label">Nama Barang:</label>
               <div class="controls">
@@ -39,7 +39,7 @@
             <div class="control-group">
               <label class="control-label">Satuan :</label>
               <div class="controls">
-                <select class="form-control custom-select-value" name="satuan">
+                <select class="form-control custom-select-value" name="satuan" id="satuan">
                   <option></option>
                 </select>
               </div>
@@ -48,69 +48,116 @@
           <div class="control-group">
             <label class="control-label">Jumlah :</label>
             <div class="controls">
-              <input type="number" class="form-control" name="jumlah" placeholder="Jumlah" value="{{old('jumlah')}}" required/>
-              @if($errors->has('jumlah'))
-                <p>{{$errors->first('jumlah')}}</p>
-              @endif
+              <input onkeyup="subTotal()" id="jumlah" type="number"
+              class="form-control" name="jumlah"
+              placeholder="Jumlah"/>
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">Diskon (%) :</label>
             <div class="controls">
-              <input type="number" id="diskon_satu" min="0" max="100"
-              class="form-control diskon" name="diskon_satu" placeholder="Diskon (%)" value="{{old('diskon_satu')}}" required/>
-              <span class="input-group-addon">%</span>
-              @if($errors->has('diskon_satu'))
-                <p>{{$errors->first('diskon_satu')}}</p>
-              @endif
+              <input onkeyup="diskonSatu()"
+              type="number" id="diskon_satu" min="0" max="100"
+              class="form-control" name="diskon_satu"
+              placeholder="Diskon (%)"/>
             </div>
           </div>
           <div class="control-group">
             <label class="control-label">Diskon (Rp.) :</label>
             <div class="controls">
-              <input type="number" id="diskon_dua" class="form-control"
-              name="diskon_dua" placeholder="Diskon (Rp.)"
-              value="{{old('diskon_dua')}}" disabled/>
-              @if($errors->has('diskon_dua'))
-                <p>{{$errors->first('diskon_dua')}}</p>
-              @endif
-              <div class="form-actions">
-                <button type="submit" class="btn btn-success">Save</button>
-                <button class="btn btn-white" type="submit">Cancel</button>
-              </div>
-              {{ csrf_field() }}
-            </form>
+              <input onkeyup="diskonDua()"
+              type="number" id="diskon_dua"
+              class="form-control"
+              name="diskon_dua"
+              placeholder="Diskon (Rp.)"
+              value="{{old('diskon_dua')}}"/>
+            </div>
           </div>
-        </div>
-
+          <div class="control-group">
+            <label class="control-label">Sub Total :</label>
+            <div class="controls">
+              <input type="number" id="total"
+              class="form-control"
+              name="sub_total"
+              placeholder="Sub Total (Rp.)"
+              disabled/>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-success">Save</button>
+            <button class="btn btn-white" type="submit">Cancel</button>
+          </div>
+          {{ csrf_field() }}
+        </form>
       </div>
     </div>
+
   </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script type="text/javascript">
-  $('.input-group').on('input', '.diskon', function () {
-    var laba = 0;
-    $('.input-group .diskon').each(function () {
-      var harga = $('#harga').val();
-      var diskon_satu = $('#diskon_satu').val();
-      var input = $(this).val();
-      if ($.isNumeric(input)) {
-        laba = parseFloat(diskon_satu / 100 * harga);
-      }
-    });
-    $('#diskon_dua').val(laba);
-  });
-  function pilihBarang() {
-    var xmlhttp = new XMLHttpRequest();
-    var value = document.getElementById("barang").value;
-    if (value != "") {
-      xmlhttp.open("GET", "/pembelian/barang/" + value, false);
-      xmlhttp.send(null);
-      document.getElementById("detail_barang").innerHTML = xmlhttp.responseText;
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+function subTotal() {
+  var jumlah = +document.getElementById("jumlah").value;
+  var satuan_satu = document.getElementById("satuan_satu").value;
+  var satuan_dua = document.getElementById("satuan_dua").value;
+  var satuan_tiga = document.getElementById("satuan_tiga").value;
+  var satuan_empat = document.getElementById("satuan_empat").value;
+  var stok_dua = +document.getElementById("stok_dua").value;
+  var stok_tiga = +document.getElementById("stok_tiga").value;
+  var stok_empat = +document.getElementById("stok_empat").value;
+  var satuan_turunan_dua = document.getElementById("satuan_turunan_dua").value;
+  var satuan_turunan_tiga = document.getElementById("satuan_turunan_tiga").value;
+  var satuan_turunan_empat = document.getElementById("satuan_turunan_empat").value;
+  var satuan = document.getElementById("satuan").value;
+  var total = document.getElementById("total");
+  var harga = +document.getElementById("harga").value;
+  if (satuan == satuan_satu) {
+    total.value = parseFloat(jumlah * harga);
+  } else if (satuan == satuan_dua) {
+    total.value = parseFloat(jumlah * stok_dua * harga);
+  } else if (satuan == satuan_tiga) {
+    if (satuan_turunan_tiga == satuan_satu) {
+      total.value = parseFloat(jumlah * stok_tiga * harga);
     } else {
-      alert('Supplier Kosong')
+      total.value = parseFloat(jumlah * stok_tiga * stok_dua * harga);
     }
+  } else if (satuan == satuan_empat) {
+    if (satuan_turunan_empat == satuan_satu) {
+      total.value = parseFloat(jumlah * stok_empat * harga);
+    } else if (satuan_turunan_empat == satuan_dua) {
+      total.value = parseFloat(jumlah * stok_dua * stok_empat * harga);
+    } else if (satuan_turunan_tiga == satuan_satu) {
+      total.value = parseFloat(jumlah * stok_tiga * stok_empat * harga);
+    } else {
+      total.value = parseFloat(jumlah * stok_dua * stok_tiga * stok_empat * harga);
+    }
+  } else {
+    alert("satuan Kosong");
   }
+}
+function pilihBarang() {
+  var xmlhttp = new XMLHttpRequest();
+  var value = document.getElementById("barang").value;
+  if (value != "") {
+    xmlhttp.open("GET", "/pembelian/barang/" + value, false);
+    xmlhttp.send(null);
+    document.getElementById("detail_barang").innerHTML = xmlhttp.responseText;
+  } else {
+    alert('Supplier Kosong')
+  }
+}
+function diskonSatu() {
+  var diskon_satu = document.getElementById("diskon_satu").value;
+  var total = document.getElementById("total").value;
+  total.value = parseFloat((diskon_satu / 100) * total);
+}
+function diskonDua() {
+  var total = document.getElementById("total").value;
+  var diskon_dua = document.getElementById("diskon_dua").value;
+  total.value = parseFloat((diskon_dua / 100).value);
+}
 </script>
+
 @endsection

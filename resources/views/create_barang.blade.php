@@ -7,11 +7,22 @@
           <h5>Tambah Barang</h5>
         </div>
         <div class="widget-content nopadding">
-          <form action="#" method="get" class="form-horizontal">
+          <form action="/barang" method="POST" class="form-horizontal">
+            <div class="control-group">
+              <label class="control-label">Kode Barang :</label>
+              <div class="controls">
+                <input type="number" class="form-control" name="id_barang"
+                placeholder="Kode Barang"
+                value="0000{{$id}}"/>
+                @if($errors->has('id_barang'))
+                  <p>{{$errors->first('id_barang')}}</p>
+                @endif
+              </div>
+            </div>
             <div class="control-group">
               <label class="control-label">Nama Barang :</label>
               <div class="controls">
-                <input type="text" class="span11" placeholder="Nama Barang" value="{{old('nama_barang')}}"
+                <input type="text" class="span11" name="nama_barang" placeholder="Nama Barang" value="{{old('nama_barang')}}"
                 @if($errors->has('nama_barang')) <p>{{$errors->first('nama_barang')}}</p>
                 @endif />
               </div>
@@ -80,8 +91,8 @@
                 <select id="ddSatuan_satu"
                 class="form-control custom-select-value" name="satuan_satu" onchange="satuanDua();">
                 <option></option>
-                <option value="pcs">pcs</option>
-                <option value="gr">gr</option>
+                <option value="PCS">PCS</option>
+                <option value="Gr">Gr</option>
               </select>
               @if($errors->has('satuan_satu'))
                 <p>{{$errors->first('satuan_satu')}}</p>
@@ -113,20 +124,6 @@
                 <input type="text" id="beli" placeholder="Jumlah"
                 class="form-control harga" name="stok_empat" value="">
                 <select id="ddSatuan_empat" class="form-control custom-select-value" name="satuan_turunan_empat"></select>
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">Satuan Terakhir :</label>
-              <div class="controls">
-                <input type="number" class="form-control" placeholder="Jumlah" name="stok" value="{{old('stok')}}"/>
-                @if($errors->has('stok'))
-                  <p>{{$errors->first('stok')}}</p>
-                @endif
-                <select id="ddStok" class="form-control custom-select-value" name="satuan_terakhir">
-                  @if($errors->has('satuan_terakhir'))
-                    <p>{{$errors->first('satuan_terakhir')}}</p>
-                  @endif
-                </select>
               </div>
             </div>
 
@@ -162,10 +159,10 @@ function satuanDua() {
   var s2 = document.getElementById("ddSatuan_dua");
   var stok = document.getElementById("ddStok");
   s2.innerHTML = "";
-  if (s1 == "pcs") {
-    var optionArray = ["|","pcs|pcs"];
+  if (s1 == "PCS") {
+    var optionArray = ["|","PCS|PCS"];
   } else {
-    var optionArray = ["|","gr|gr"];
+    var optionArray = ["|","Gr|Gr"];
   }
   for (var option in optionArray) {
     var pair = optionArray[option].split("|");

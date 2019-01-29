@@ -3,7 +3,7 @@
   <div class="row-fluid">
     <div class="span12">
       <div class="widget-box">
-        <div class="widget-title"> <span class="icon"> <i class="fas fa-truck-moving"></i> </span>
+        <div class="widget-title"> <span class="icon"> <i class="icon-tasks"></i> </span>
           <h3>Supplier</h3>
         </div>
         <div class="widget-content nopadding">

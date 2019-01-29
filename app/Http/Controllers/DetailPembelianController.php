@@ -53,13 +53,11 @@ class DetailPembelianController extends Controller
       $lunas = "Belum lunas";
     }
     $output = '
-    <div class="datatable-dashv1-list custom-datatable-overright">
-    <div id="toolbar" style="text-align: justify">
-    <label style="font-size: 15pt;">No Faktur : ' . $pembelian->id_pembelian . '</label>
+    <div class="control-group">
+    <label class="control-label">No Faktur : ' . $pembelian->id_pembelian . '</label>
     <br>
-    <label style="font-size: 15pt;">Tanggal : ' . $pembelian->tanggal . '</label>
-    <br>
-    <label style="font-size: 15pt;">Supplier : ' . $pembelian->nama . '</label>
+    <label class="control-label">Tanggal : ' . $pembelian->tanggal . '</label>
+    <label class="control-label">Supplier : ' . $pembelian->nama . '</label>
     <br>
 
     <label style="font-size: 15pt;">Status : ' . $lunas . '</label>
